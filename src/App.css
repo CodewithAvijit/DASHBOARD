@@ -1,0 +1,157 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =================================
+   REFINED THEME VARIABLES
+==================================== */
+:root {
+  /* Light Theme */
+  --bg-main: #f4f7f9;
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --text-subtle: #718096;
+  --card-bg: white;
+  --card-border: #e2e8f0;
+  --card-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --hover-bg: #f7fafc;
+  --button-border: #cbd5e0;
+  --brand-primary: #2f855a; /* Darker, richer green */
+  --brand-primary-hover: #276749;
+  --brand-text: var(--brand-primary);
+  --input-border: #cbd5e0;
+  --response-bg: #f7fafc;
+}
+
+body.dark {
+  /* Dark Theme */
+  --bg-main: #1a202c;
+  --text-primary: #f7fafc;
+  --text-secondary: #a0aec0;
+  --text-subtle: #718096;
+  --card-bg: #2d3748;
+  --card-border: #4a5568;
+  --card-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  --header-bg: rgba(26, 32, 44, 0.8);
+  --hover-bg: #4a5568;
+  --button-border: #4a5568;
+  --brand-primary: #48bb78; /* Brighter green for contrast */
+  --brand-primary-hover: #38a169;
+  --brand-text: var(--brand-primary);
+  --input-border: #4a5568;
+  --response-bg: #1a202c;
+}
+
+/* =================================
+   BASE & LAYOUT STYLES
+==================================== */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif; /* Using Inter font */
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-container { min-height: 100vh; position: relative; }
+.main-header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px); background-color: var(--header-bg); border-bottom: 1px solid var(--card-border); }
+.header-content { max-width: 80rem; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; justify-content: space-between; }
+.header-logo { display: flex; align-items: center; gap: 0.75rem; }
+.logo-icon { display: inline-flex; height: 2.25rem; width: 2.25rem; align-items: center; justify-content: center; border-radius: 0.75rem; background-color: var(--brand-primary); color: white; font-weight: bold; font-size: 1.25rem; }
+.logo-title { font-weight: 600; }
+.logo-subtitle { font-size: 0.75rem; color: var(--text-subtle); }
+.header-links { display: flex; align-items: center; gap: 1rem; }
+.main-grid { max-width: 80rem; margin: 0 auto; padding: 1.5rem 1rem; display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
+.sidebar { grid-column: span 12; }
+@media (min-width: 768px) { .sidebar { grid-column: span 3; } }
+@media (min-width: 1024px) { .sidebar { grid-column: span 2; } }
+.main-content { grid-column: span 12; }
+@media (min-width: 768px) { .main-content { grid-column: span 9; } }
+@media (min-width: 1024px) { .main-content { grid-column: span 10; } }
+
+/* Sidebar buttons with icons */
+.sidebar-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.sidebar-button svg {
+  font-size: 1.1rem;
+}
+.sidebar-button:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+.sidebar-button.active {
+  background-color: var(--brand-primary);
+  color: white;
+  font-weight: 600;
+}
+
+/* Other component styles */
+.card { background-color: var(--card-bg); border-radius: 0.75rem; border: 1px solid var(--card-border); box-shadow: var(--card-shadow); }
+.sidebar-card { padding: 0.5rem; }
+.chart-card { padding: 1.5rem; }
+.stat-card { border-radius: 0.75rem; padding: 1rem; background-color: var(--card-bg); box-shadow: var(--card-shadow); border: 1px solid var(--card-border); }
+.form-input { margin-top: 0.25rem; padding: 0.5rem 0.75rem; font-size: 1rem; border-radius: 0.5rem; border: 1px solid var(--input-border); background-color: var(--card-bg); color: var(--text-primary); }
+.theme-toggle { background: var(--card-bg); border: 1px solid var(--button-border); color: var(--text-secondary); width: 2.25rem; height: 2.25rem; border-radius: 9999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.theme-toggle:hover { background: var(--hover-bg); }
+.loading-overlay { position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 50; display: grid; place-items: center; color: white; font-weight: bold; }
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .stats-grid { grid-template-columns: repeat(6, 1fr); } }
+.charts-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+@media (min-width: 1024px) { .charts-grid { grid-template-columns: repeat(2, 1fr); } }
+.card-title { font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
+.stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-subtle); margin-bottom: 0.25rem; }
+.stat-value { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); }
+.stat-unit { font-size: 1rem; color: var(--text-subtle); margin-left: 0.25rem; }
+.gauge-text { fill: var(--text-secondary); }
+.content-card { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.description { font-size: 0.875rem; color: var(--text-secondary); margin: -1rem 0 0 0; }
+.form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (min-width: 1024px) { .form-grid { grid-template-columns: repeat(4, 1fr); } }
+.form-label { display: flex; flex-direction: column; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-secondary); }
+.form-actions { display: flex; gap: 0.75rem; }
+.form-button { padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid var(--button-border); background-color: var(--card-bg); font-weight: 600; cursor: pointer; color: var(--text-primary); transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; }
+.form-button:hover { background-color: var(--hover-bg); }
+.form-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.form-button.primary { background-color: var(--brand-primary); border-color: var(--brand-primary); color: white; }
+.form-button.primary:hover { background-color: var(--brand-primary-hover); border-color: var(--brand-primary-hover); }
+.response-box { background-color: var(--response-bg); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 1rem; font-size: 0.75rem; }
+.response-title { font-weight: 600; margin-bottom: 0.5rem; }
+.response-box pre { white-space: pre-wrap; word-break: break-all; margin: 0; }
+.file-input { font-size: 0.875rem; color: var(--text-secondary); }
+.toast-container { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 100; }
+.toast-message { padding: 0.75rem 1.25rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); color: white; background-color: var(--text-primary); }
+.toast-message.error { background-color: #dc2626; }
+.main-footer { padding: 2rem 0; text-align: center; font-size: 0.75rem; color: var(--text-subtle); }
+
+/* Fix for the large gauge */
+/* Fix for the large gauge */
+/* In src/App.css */
+
+.gauge-wrapper {
+  /* This container defines the maximum size of your gauge */
+  max-width: 200px; /* You can change this value */
+  margin: 0 auto;
+}
+
+.gauge-wrapper svg {
+  /* This is the critical part: it makes the SVG inside
+     the wrapper scale to fit the container's width. */
+  width: 100%;
+  height: auto;
+}
