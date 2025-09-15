@@ -20,7 +20,7 @@ import {
 import "./App.css";
 
 // --- Helper Functions ---
-const BASE_URL = "https://agriassure-4gn1.onrender.com";
+const BASE_URL = "https://dashboard-xuhc.onrender.com";
 
 const cls = (...arr) => arr.filter(Boolean).join(" ");
 
